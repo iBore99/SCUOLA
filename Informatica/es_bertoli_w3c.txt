@@ -1,0 +1,5 @@
+SELECT * FROM Customers c JOIN Orders o ON c.CustomerID = o.CustomerID WHERE o.OrderDate BETWEEN '1996-07-01' AND '1996-07-31' ORDER BY o.OrderDate;
+
+SELECT e.FirstName as Nome FROM Employees e JOIN orders o ON e.EmployeeID = o.EmployeeID WHERE o.OrderDate BETWEEN '1996-07-27' AND '1996-07-31' ORDER BY e.FirstName;
+
+        

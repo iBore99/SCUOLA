@@ -1,0 +1,31 @@
+Cristian Borelli
+
+
+
+LINGUAGGIO DI ZANICHELLI:
+
+
+a) PROJECT (JOIN libri WITH prestiti WHERE (libri.codice_libro = prestiti.codice_libro AND data_prestito = '2017-7-13')) OVER titolo;
+
+b) PROJECT (JOIN prestiti WITH libri WHERE (prestiti.codice_libro = libri.codice_libro AND (autore = 'Camilleri' OR autore = 'De Luca') ) ) OVER codice_utente;
+
+c) PROJECT (join (join libri with prestiti where(libri.codice_libro = prestiti.codice_libro)) with utenti where (nome = 'Paolo' AND cognome = 'Bianchi')) over autore;
+
+d) PROJECT (JOIN (JOIN libri WITH prestiti WHERE(libri.codice_libro = prestiti.codice_libro AND data_prestito = '2017-7-13')) WITH utenti WHERE (nome = 'Paolo' AND cognome = 'Bianchi')) OVER titolo;
+
+e) PROJECT (LEFT OUTERJOIN utenti WITH prestiti WHERE (codice_libro = NULL)) OVER nome, cognome; 
+
+
+
+LINGUAGGIO SQL: 
+
+
+a) SELECT titolo, FROM libri INNER JOIN prestiti ON  libri.codice_libro = prestiti.codice_libro WHERE data_prestito = '2011-7-13' ORDER BY titolo;
+
+b) SELECT prestiti.codice_utente FROM utenti INNER JOIN prestiti ON utenti.codice_utente = prestiti.codice_utente INNER JOIN (SELECT codice_libro FROM libri where autore IN ('Camilleri', 'De Luca')) AS libri_scelti ON libri_scelti.codice_libro = prestiti.codice_libro;
+
+c) SELECT libri.autore FROM libri INNER JOIN prestiti ON libri.codice_libro = prestiti.codice_libro INNER  JOIN utenti ON prestiti.codice_utente = utenti.codice_utente WHERE nome = 'Paolo' AND cognome = 'Bianchi' ORDER BY autore;
+
+d) SELECT libro.titolo FROM libri INNER  JOIN prestiti ON libri.codice_libro = prestiti.codice_libro INNER  JOIN utenti ON prestiti.codice_utente = utenti.codice_utente WHERE data_prestito = '2011-7-13' AND nome = 'Paolo' AND cognome = 'Bianchi' ORDER BY titolo;
+
+e) SELECT utenti.cognome, utenti.nome FROM utenti LEFT JOIN prestiti ON utenti.codice_utente = prestiti.codice_utente WHERE prestiti.codice_utente IS NULL ORDER BY cognome,nome;
