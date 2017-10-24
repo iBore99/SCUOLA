@@ -1,0 +1,8 @@
+ Dominio di funzione in due variabili:
+
+è rappresentato dall'insieme di tutte le coppie (x,y) per le quali è possibile determinare il valore z=f(x,y). 
+
+Cosa sono le linee di livello?
+
+La proiezione sul piano x,y dell’andamento in quota della funzione.
+
