@@ -1,0 +1,14 @@
+MODELLO LOGICO 
+
+
+Specializzazioni (idSpecializzazione, descrizione)
+
+Medici (idMedico, cognome, nome, indiriuzzo, dataNascita, telefono, idSpecializzazione)
+
+Visite (idVisita, descrizione, idSpecializzazione )
+
+Pazienti (idPaziente, CodiceFiscale, cognome, nome, indirizzo, dataNascita, telefono)
+
+Prenotazioni (idPrenotazione, idPaziente, idVisita. DataPrenotazione, dataVisita,oraVisita)
+
+mediciSpecializzazioni(idMediciSpecializzazioni, idMedico, idSpecializzazione)
