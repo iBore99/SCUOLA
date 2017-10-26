@@ -35,3 +35,12 @@ Per modificare il valore di un campo:
 
 Per eliminare righe da una tabella: 
 	DELETE FROM nome_tabella WHERE ""CONDIZIONE""
+-------------------------------------------------------------------
+DIVERSI TIPI DI SINTASSI:
+1) SELECT c.nome FROM Clienti c JOIN Acquisti a ON c.codice_cliente = a.codice_cliente JOIN Fornitori f 
+	ON a.codice_fornitore = f.codice_fornitore 
+	WHERE f.nome = c.nome = 'Rossi' AND c.citta = 'Milano' ORDER BY c.nome;
+
+2) SELECT c.nome FROM Clienti c, Acquisti a, Fornitori f 
+	WHERE c.codice_cliente = a.codice_cliente AND f.codice_fornitore = a.codice_fornitore 
+	ORDER BY c.nome;
