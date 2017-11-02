@@ -44,3 +44,42 @@ DIVERSI TIPI DI SINTASSI:
 2) SELECT c.nome FROM Clienti c, Acquisti a, Fornitori f 
 	WHERE c.codice_cliente = a.codice_cliente AND f.codice_fornitore = a.codice_fornitore 
 	ORDER BY c.nome;
+	
+----------------------------------------------------------------------
+FUNZIONI DI RAGGRUPPAMENTO: 
+
+1) COUNT() --> conta i record di una tabella.
+2) SUM()   --> 
+3) MAX()
+4) MIN()
+5) AVG()
+
+CLAUSOLE: 
+GROUP BY
+HAVING --> non può esistere senza "group by".
+
+Esempi: 
+1) SELECT COUNT(*) AS num_rec FROM Customers;
+
+Quanti clienti ho per ogni nazione?
+
+2) SELECT c.country, COUNT(*) AS [Num. Clienti] 
+FROM Customers c 
+GROUP BY c.country 
+ORDER BY COUNT(*) DESC;
+
+3) SELECT e.lastname, e.firstname, COUNT(*) AS [num ordini] 
+FROM Employees e, Orders o 
+WHERE e.employeeID = o.employeeid
+GROUP BY e.employeeid HAVING COUNT(*) > 20
+ORDER BY COUNT(*) DESC ;     
+
+4) SELECT productName, price
+FROM Products 
+WHERE price > (SELECT AVG(PRICE) FROM PRODUCTS);
+
+5) SELECT c.customername, o.orderdate, SUM(p.price * od.quantity) as [costo tot ordini]
+FROM Customers c, Orders o, Orderdetails od, Products p
+WHERE c.customerid = o.customerid AND o.orderid = od.orderId AND od.productid = p.productid AND
+c.customername like 'GROSELLA%' 
+GROUP BY c.customername
