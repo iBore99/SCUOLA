@@ -13,7 +13,7 @@ EX: WHERE cognome IN ('rossi', 'Borelli')
 -- La condizione è verificata quando una delle righe della tabella data come risultato dalle parentesi corrisponde all'uguaglianza.
 WHERE nome_campo = ANY ("condizione");
 Per concatenare delle condizioni sono presenti gli operatori logici AND, OR, NOT. 
-------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------
 
 Per creare un database:  CREATE DATABASE nome_database;
 Per eliminare un database:  DROP DATABASE nome_database;
@@ -49,10 +49,10 @@ DIVERSI TIPI DI SINTASSI:
 FUNZIONI DI RAGGRUPPAMENTO: 
 
 1) COUNT() --> conta i record di una tabella.
-2) SUM()   --> 
-3) MAX()
-4) MIN()
-5) AVG()
+2) SUM()   --> Somma i record di una tabella
+3) MAX()   --> Restituisce il massimo
+4) MIN()   --> Restituisce il minimo
+5) AVG()   --> Restituisce la media
 
 CLAUSOLE: 
 GROUP BY
