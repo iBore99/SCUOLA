@@ -59,3 +59,13 @@ CREATE TABLE IF NOT EXISTS iscrizioni(
     FOREIGN KEY (cod_corso) REFERENCES corsi(cod_corso), 
     FOREIGN KEY (matricola) REFERENCES studenti(matricola)
 );
+
+
+
+1) SELECT DISTINCT s.nome FROM studenti s JOIN iscrizioni i ON s.matricola = i.matricola JOIN corsi c ON i.cod_corso = c.cod_corso WHERE c.cod_corso <> "57";
+
+2) SELECT  e.data_esame, e.voto FROM studenti s JOIN esami e ON s.matricola = e.matricola JOIN corsi c ON e.cod_corso = "57" AND c.data_inizio_validita = "2016-11-11" WHERE e.superato = "S";
+
+3) SELECT c.titolo, COUNT(*) as "N. studenti partecipanti" FROM studenti s JOIN iscrizioni i ON s.matricola = i.matricola JOIN corsi c ON c.cod_corso = i.cod_corso WHERE c.data_inizio_validita LIKE "2016%" AND i.superato = "S";
+
+4) 
