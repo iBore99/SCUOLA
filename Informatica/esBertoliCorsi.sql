@@ -62,8 +62,11 @@ CREATE TABLE IF NOT EXISTS iscrizioni(
 
 
 
-1) SELECT DISTINCT s.nome FROM studenti s JOIN iscrizioni i ON s.matricola = i.matricola JOIN corsi c ON i.cod_corso = c.cod_corso WHERE c.cod_corso <> "57";
+a) SELECT DISTINCT s.nome FROM studenti s JOIN iscrizioni i ON s.matricola = i.matricola JOIN corsi c ON i.cod_corso = c.cod_corso WHERE c.cod_corso <> "57";
 
-2) SELECT  e.data_esame, e.voto FROM studenti s JOIN esami e ON s.matricola = e.matricola JOIN corsi c ON e.cod_corso = "57" AND c.data_inizio_validita = "2016-11-11" WHERE e.superato = "S";
+b) SELECT  e.data_esame, e.voto FROM studenti s JOIN esami e ON s.matricola = e.matricola JOIN corsi c ON e.cod_corso = "57" AND c.data_inizio_validita = "2016-11-11" WHERE e.superato = "S";
 
 3) SELECT c.titolo, COUNT(*) as "N. studenti partecipanti" FROM studenti s JOIN iscrizioni i ON s.matricola = i.matricola JOIN corsi c ON c.cod_corso = i.cod_corso WHERE c.data_inizio_validita LIKE "2016%" AND i.superato = "S";
+
+4) SELECT s.nome, s.cognome, COUNT(*) AS [N. corsi] FROM studenti s, iscrizioni i, corsi c WHERE s.matricola = i.matricola AND i.cod_corso = c.cod_corso
+    GROUP BY s.matricola ;
