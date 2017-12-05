@@ -1,4 +1,37 @@
---1) 
+-- a 
+
+SELECT b.* FROM barche b, partecipa p, regate r
+WHERE b.cod_barca = p.cod_barca AND p.cod_regata = r.cod_regata
+GROUP BY b.cod_barca HAVING COUNT(*) = (SELECT COUNT(*) FROM regate);
+
+
+-- b 
+
+SELECT b.*, COUNT(*) AS "N. Sponsor" FROM barche b, sponsor s WHERE b.cod_barca = s.cod_barca
+GROUP BY b.cod_barca HAVING COUNT(*) >= 2;
+
+
+-- c 
+
+SELECT M.* FROM ( SELECT * from barche
+    WHERE cod_barca NOT IN (  
+        SELECT p.cod_barca 
+        FROM partecipa p, regate r
+        WHERE p.cod_regata = r.cod_regata	
+        AND r.luogo = 'Melbourne'
+) ) M,
+ ( 	SELECT b.cod_barca, b.nome, b.nazionalita 
+	FROM barche b, partecipa p, regate r
+	WHERE b.cod_barca = p.cod_barca AND p.cod_regata = r.cod_regata
+	AND r.luogo = 'Bergen' )  B 
+
+	WHERE M.cod_barca = B.cod_barca
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+-- 1) 
 SELECT titolo  FROM film WHERE regista = "Fellini" AND anno_produzione > 1960;
 
 -- Supponendo che "durata" sia un attributo dei "film"
@@ -13,7 +46,7 @@ film f,
     WHERE f.cod_film = P.cod_film AND P.cod_sala = S.cod_sala;
 
 
---4) 
+-- 4) 
 SELECT M.titolo FROM
 (SELECT f.* 
     FROM film f, 
@@ -29,28 +62,28 @@ WHERE f.cod_film  = r.cod_film AND r.cod_attore = A.cod_attore) M,
 WHERE M.cod_film = A.cod_film;
 
 
---5)
+-- 5)
 SELECT f.titolo, A.cognome, A.nome FROM 
 (SELECT * FROM attori a WHERE a.nazionalita = 'francese') A,
 film f, recite r 
 WHERE f.cod_film = r.cod_film AND A.cod_attore = r.cod_attore;
 
 
---6) 
+-- 6) 
 SELECT nome, COUNT(*) AS "N. sale" FROM sale WHERE citta = 'Firenze' AND posti > 60 GROUP BY nome 
 
 
---7) 
+-- 7) 
 SELECT a.cognome, a.nome FROM attori a, recite r, film f
 WHERE a.cod_attore = r.cod_attore AND r.cod_film = f.cod_film
 AND r.cod_film NOT IN (SELECT cod_film FROM film WHERE regista = 'Spielberg');
 
 
---8)
+-- 8)
 SELECT citta FROM sale GROUP BY citta HAVING COUNT(*) > 10;    
 
 
---9)
+-- 9)
 SELECT F.titolo, COUNT(*)as NumProiezioni, SUM(P.incasso) as IncassoTot FROM
     (SELECT * FROM film WHERE regista = "Spielberg")  F
 LEFT JOIN 
@@ -59,7 +92,7 @@ ON F.cod_film = P.cod_film;
 GROUP BY F.titolo;
 
 
---10) 
+-- 10) 
 SELECT f.titolo, f.regista FROM film f, (SELECT cod_film FROM recite) R
 WHERE f.cod_film NOT IN (R.cod_film);
 
